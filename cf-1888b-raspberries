@@ -18,6 +18,8 @@ Intution:
 Approach:
   Same as intution.
 
+Time Complexity: O(n)
+
 Code:
 ```bash
 #include <bits/stdc++.h>
