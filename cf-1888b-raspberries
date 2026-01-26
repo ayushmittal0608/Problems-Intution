@@ -1,0 +1,47 @@
+You are given an array of integers a1,a2,…,an and a number k (2≤k≤5). In one operation, you can do the following:
+- Choose an index 1≤i≤n,
+- Set ai=ai+1.
+Find the minimum number of operations needed to make the product of all the numbers in the array a1⋅a2⋅…⋅an divisible by k.
+
+Input
+Each test consists of multiple test cases. The first line contains a single integer t (1≤t≤104) — the number of test cases. Then follows the description of the test cases.
+The first line of each test case contains two integers n and k (2≤n≤105, 2≤k≤5) — the size of the array a and the number k.
+The second line of each test case contains n integers a1,a2,…,an (1≤ai≤10).
+It is guaranteed that the sum of n over all test cases does not exceed 2⋅105.
+
+Output
+For each test case, output the minimum number of operations needed to make the product of all the numbers in the array divisible by k.
+
+Intution:
+  If we want to solve this problem, we need to view the nearest point to the number we have taken in an array. First raw thought is to calculate nearest, so for that we minimise the difference between k and arr[i]. Now, we get the minm value and run our solution. We get an error at a point where we find that taking k as 4 is creating a problem, so we count number of even values and compare, which one is more optimal, is it minm or the value max(0, 2-even), because lets say we have 2 even or more than that, we need 0 operations because then every number can be divided by 4, if it is 1, then we only need to make one odd number to be even to satisfy it, if it is 0, then we need to make 2 numbers even, we will check which approach is the most optimal approach to solve this by comparing them and taking minm.
+
+Approach:
+  Same as intution.
+
+Code:
+```bash
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n, k;
+        cin>>n>>k;
+        vector<int>arr(n);
+        int minm=k;
+        int even=0;
+        for(int i=0; i<n; i++){
+            cin>>arr[i];
+            if(arr[i]%2==0){
+                even++;
+            }
+            minm=min(minm, (k-(arr[i]%k))%k);
+        }
+        if(k==4){
+            minm=min(minm, max(0, 2-even));
+        }
+        cout<<minm<<endl;
+    }
+}
