@@ -61,7 +61,8 @@ Call the 1-st and 4-th friend and tell them to move to location 1. Their locatio
 Now, if we observe the test case and read the problem, we know that if two person are standing at same location, then we know where to call other people, so we won't call them if they are located at same location. So, we sort the array and first call will be on leftmost and rightmost value and then if they are not equal, then we keep on increasing left and decreasing right and increase the count, but if they both becomes equal, then break the loop because till that position, everyone is equal that we are getting same term, for eg. 2 5 5 5 5 5 5, now its sorted and we get 1 call because rest are already at 5th pos, let's say 2 5 5 5 5 5 2, now sort it and we get 2 2 5 5 5 5 5, now its sorted and we get 2 calls and so on. Now, question will be solved.
 
 # Code
-```while(l<r){
+```
+while(l<r){
   if(a[l]==a[r]){
     break;
   }
