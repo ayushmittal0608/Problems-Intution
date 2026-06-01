@@ -1,3 +1,4 @@
+# Problem
 Alice is preparing a cake for her party. However, she is in a rush, so the frosting on the cake is uneven. To quickly solve this issue, Alice will put her knife at some integer height and then sweep the frosting from left to right to make the frosting level.
 
 Formally, let ai be the height of the frosting at the i-th position. Suppose that Alice puts her knife at some integer height h. If the height of frosting at position i is greater than h, the excess frosting will be pushed to position i+1. Excess frosting on position n will be pushed off the cake completely.
@@ -46,18 +47,20 @@ When i=2, Alice is interested in the cake represented by an array [4,2]. If Alic
 
 When i=3, if Alice put her knife at height 4, the resulting frosting level will be [4,2,3]. However, if Alice put her knife at height 3, the resulting frosting level will be [3,3,3]. Therefore, the maximum height the frosting can be while keeping it levelled is 3.
 
-Problem Intution:
+# Problem Intution:
 Initially, we have 4 which is maximum spread, so we have max height till i=0 which is 4, now let's move further and we get 2, so now we have [4, 2], now we have its mean as the spread, so it becomes 3, so till i=1, we have its frosting spread as [4, 3], and also 3>2 as per problem, Now, we have [4,3,3] and we calculate the mean, which is 10/3=3==3, so we have its spread as [4, 3, 3].
 
 Let's try it with 913764826 346182673 764382516 and we notice that mean of 913764826 and 346182673 is 629973749 and similarly, at last too, we get 629973749 and obviously, we get the maxm result.
 
-for(int i=0; i<n; i++){
+# Code
+```for(int i=0; i<n; i++){
   pref+=a[i];
   height=pref/(i+1);
   maxm=max(maxm, height);
   cout<<maxm<<" ";
 }
 cout<<endl;
+```
 
 Too easy. Hence, solved.
 
