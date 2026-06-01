@@ -1,3 +1,4 @@
+# Problem
 This is the Easy version of the problem. The difference between the versions is that in this version, the constraints on n, x, s, t are smaller. You can hack only if you solved all versions of this problem.
 
 Alice's friends have come to the party, and now they are lining up to enter the party.
@@ -57,10 +58,11 @@ In the first test case, there are 2 tables with 2 seats each. Here is one of the
 - The fifth person is an extrovert. Alice can assign them to the second table, which is not empty.
 Thus, four people are seated at the party. This is maximal since there are only four seats at the party.
 
-Problem Intution
+# Problem Intution
 When we read this problem, we realise that if we insert an introvert, then we can insert ambivert and extrovert but introvert wants to be inserted alone on a table while extrovert want someone on a table and ambivert has a practice of both. So, let's feel this question rather than solving it, now condition is for introvert and ambivert, so we place them first and we know that there are x tables, so we initiate a loop from 0 to x inside a loop from 0 to n, why so because we have to place introvert and ambivert on individual seats and increase their seats at individual tables, so we take a[j+1]=max(a[j+1], sit+1), now when the turn of extrovert and ambivert comes, then we accommodate them on rest of the seats, so we take a[j]=max(a[j], sit+1) till sit<j*t, now base cases come where j+1<=x otherwise it would exceed x, for ambivert and introvert and j>0 and sit<j*t otherwise we get it 0 and we won't be able to get right a[j] value for ambivert and extrovert.
 
-for(int i=0; i<n; i++){
+# Code
+```for(int i=0; i<n; i++){
   vector<int>a=dp;
   for(int j=0; j<=x; j++){
     if(dp[j]==-1){
@@ -85,7 +87,7 @@ for(int i=0; i<=x; i++){
   ans=max(ans, dp[i]);
 }
 cout<<ans<<endl;
-
+```
 Too easy. Hence, solved.
 
 
