@@ -66,7 +66,8 @@ We know that if a person is an introvert, we take seat+=(s-1) which means acquir
 Now, the beauty and magic of CF is that if we solve this problem using this approach, we can copy the same code to cf-2232-c1 (easy version) and we will get it accepted by CF and I think if we know this approach, we could be able to solve 2 problems without taking care of constraint problem. After watching and solving such problems, CF attracts me more to solve more problems and participate in more contests.
 
 # Code:
-```for(int i=0; i<n; i++){
+```
+for(int i=0; i<n; i++){
   if(a[i]=='I'){
     if(table>0){
       table--;
