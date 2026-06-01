@@ -53,7 +53,8 @@ Initially, we have 4 which is maximum spread, so we have max height till i=0 whi
 Let's try it with 913764826 346182673 764382516 and we notice that mean of 913764826 and 346182673 is 629973749 and similarly, at last too, we get 629973749 and obviously, we get the maxm result.
 
 # Code
-```for(int i=0; i<n; i++){
+```
+for(int i=0; i<n; i++){
   pref+=a[i];
   height=pref/(i+1);
   maxm=max(maxm, height);
