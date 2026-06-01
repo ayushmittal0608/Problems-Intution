@@ -1,3 +1,4 @@
+# Problem
 Alice is inviting her friends to a party to eat cakes. However, each friend may not be at the same place, so everyone has to meet up at the same location first.
 
 Alice has n
@@ -56,10 +57,11 @@ In the first test case, the minimum number of group calls is 2. One way to make 
 In the second test case, the minimum number of group calls is 2. One way to make everyone at the same location is as follows:
 Call the 1-st and 4-th friend and tell them to move to location 1. Their locations are now [1,1,1,1,2]. Call the 4-th and 5-th friend and tell them to move to location 1. Their locations are now [1,1,1,1,1].
 
-Intution:
+# Intution:
 Now, if we observe the test case and read the problem, we know that if two person are standing at same location, then we know where to call other people, so we won't call them if they are located at same location. So, we sort the array and first call will be on leftmost and rightmost value and then if they are not equal, then we keep on increasing left and decreasing right and increase the count, but if they both becomes equal, then break the loop because till that position, everyone is equal that we are getting same term, for eg. 2 5 5 5 5 5 5, now its sorted and we get 1 call because rest are already at 5th pos, let's say 2 5 5 5 5 5 2, now sort it and we get 2 2 5 5 5 5 5, now its sorted and we get 2 calls and so on. Now, question will be solved.
 
-while(l<r){
+# Code
+```while(l<r){
   if(a[l]==a[r]){
     break;
   }
@@ -68,6 +70,7 @@ while(l<r){
   r--;
 }
 cout<<cnt<<endl;
+```
 
 Too easy, hence solved.
 
