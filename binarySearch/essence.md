@@ -17,7 +17,7 @@ while(low<=high){
         high=mid-1;
     }
     else{
-        mid=low+1;
+        low=mid+1;
     }
 }
 ```
