@@ -1,6 +1,12 @@
 Now, we are having a lots of data and we need to organise it in a way that data is retrieved to a table in chunks and not the whole data at the same time, it is being implemented by sending page and limit to backend. But before going into pagination concept, first thing the people use to do is to implement input form in the form of wizard. Our reflexes in some coding or thinking or anything doesn't get formed if we are just skipping the small part and getting to the bigger part. But sticking too much to the small part is the hindrance to the growth of our thinking too. So, we need to first try to implement wizard before pagination.
 
-What is wizard? It is an input form where each step is dependent on previous state. For any rendering inside react.js, first thing that we need to know is the conditional rendering part, for eg, if something is associated with state, we have taken, so we use && like {ayush && <h1>Welcome Ayush!</h1>} and if we want a condition that only display it if ayush is there and otherwise fall to No one found, so we use ? which is like {ayush ? <h1>Welcome Ayush</h1> : <h1>No one found</h1>}.
+What is wizard? It is an input form where each step is dependent on previous state. For any rendering inside react.js, first thing that we need to know is the conditional rendering part, for eg, if something is associated with state, we have taken, so we use && like 
+
+```{ayush && <h1>Welcome Ayush!</h1>}```
+
+and if we want a condition that only display it if ayush is there and otherwise fall to No one found, so we use ? which is like 
+
+```{ayush ? <h1>Welcome Ayush</h1> : <h1>No one found</h1>}.```
 
 So, currently we have let's say 4 steps for the form, now first one is step1, so our current state will be 1, so we use state like const [page, setPage] = useState(1); Now we have let's say 4 as maximum pages, so at each button inside that tab, currently if page is 1, then we disable the previous page option and when we get to 4, we disable the next page option. Now, what these buttons are doing, they are just increasing and decreasing the state of page. Now, the page gets changed where we setPages and at each page it loads a different page for input.
 
