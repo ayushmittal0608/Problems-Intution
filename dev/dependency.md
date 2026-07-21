@@ -66,6 +66,39 @@ In this exchange, if any event occurs, then it should be sent to all the service
 3. Topic Exchange
 In this exchange, we make use of wildcard characters to exchange messages with respect to wildcard pattern matching, for eg, user.* would allow the operations to be done over all states of user while *.created would allow operations to be done to all creations bounded to queue. Now, we also make use of '#' character which is being used to match pattern based on more than single word that comes, for eg, it could be user.updated.forSecondTime or user.updated.pending.
 
+5. Publisher Service
+In order to publish any event or record, we need a channel to publish it, which we created earlier and need to keep persistent: true, so that record would be kept intact.
+
+```
+channel.publish('user.events', '', Buffer.from(JSON.stringify(user)), { persistent: true });
+```
+
+6. Assert Queue
+In order to keep the record intact inside any service queue, we need to assert a queue with durable: true.
+
+```
+channel.assertQueue('email.queue', { durable: true })
+```
+
+7. Bind Queue
+In order to bind queue to the master service which has published the event or which is a publisher, we need to bind queue with routing key, since it is a fanout exchange, so we use "".
+
+```
+channel.bindQueue('email.queue', 'user.events', '');
+```
+
+8. Now, the final part is to consume the channel, for eg, we have an email.queue where we are consuming message from user.created which we have bound to recieve.
+
+```
+channel.consume('email.queue', async(message) => {
+  const user = JSON.parse(message.content.toString());
+  sendEmail(user);
+  channel.ack(message);
+})
+```
+
+So, we just need to connect to rabbitmq, then create a channel using that connection, then startRabbitMQ(), once it is started, we need to assert an exchange that whether it is direct, topic or fanout, with durability as true to make it work even if rabbitmq restarts. Then we publish the record using exchange routing key and store it in a buffer so as to store data in bytes and keeping it persistent. Then we assert a queue ensuring durability to be true and bind queue to the exchange so as to consume data, also we need to pass the exchange routing key as well. Finally, we just need to consume the data through channel and send email or notification based on service to the user. In order to check or track the response of message, channel sends an acknowledgement to confirm the process executed successfully, otherwise it would implement retry logics to execute process successfully.
+
 When someone knows this message queues topic, they can easily build applications without concerning about scalability problems as it is till date a best algorithm to be implemented in order to exchange messages based on routing and inserting records to DB.
 
 The concept that we have discussed doesn't come from learning some crash course or upskilling ourself in some new language or something because if upskilling or learning some crash course defines our progress or success, then we are just learning another algorithm for the sake of learning, but if we learn it out of curiosity on how this world is being built and what was the psychology behind the person implemented this model, we would not apprciate upskilling or learning some crash course for growth, but for knowing another dimension of creation.
